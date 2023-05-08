@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Library Management System </title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+  <style>
+			table{
+				min-width: max-content;
+			}
+		</style>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Library Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/getbook}">Library Management</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/borrow}">Borrow Book</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+
+  <div class = "row py-3 align-items-end">
+    <h1 class="col" th:text = "${book.title + ' Borrowers'}"></h1>
+  </div>
+
+  <div class="table-responsive">
+    <table class = "table table-dark table-bordered">
+      <thead>
+      <tr>
+        <th> Name</th>
+        <th> Email</th>
+        <th> Issued Date</th>
+        <th> Return Date</th>
+        <th> Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each = "borrower : ${book.borrowedBooks}">
+        <td th:text = "${borrower.user.name}"></td>
+        <td th:text = "${borrower.user.email}"></td>
+        <td th:text = "${borrower.issuedDate}"></td>
+        <td th:text = "${borrower.returnDate}"></td>
+        <td>
+<!--          <a th:href = "@{/book/edit/{id}(id=${book.id})}"-->
+<!--             class = "btn btn-primary">Update</a>-->
+
+<!--          <a th:href = "@{/book/{id}(id=${book.id})}"-->
+<!--             class = "btn btn-danger">Delete</a>-->
+        </td>
+
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
